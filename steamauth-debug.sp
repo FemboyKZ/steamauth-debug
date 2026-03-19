@@ -76,7 +76,7 @@ public void OnClientPutInServer(int client)
 
     if (isSteamAuthed && auth[0] != '\0')
     {
-        PrintToServer("[SteamAuth][OnClientPutInServer] \"%s\" - SteamAuth is VALID. (Steam2: %s | Steam64: %s)", name, auth, steam64);
+        PrintToServer("[SteamAuth][OnClientPutInServer] \"%s\" - SteamAuth is VALID. (Steam: %s | Steam64: %s)", name, auth, steam64);
         PrintToChat(client, "\x04[SteamAuth]\x01 OnClientPutInServer: Steam authentication is \x04valid\x01. (%s)", auth);
     }
     else
@@ -102,7 +102,7 @@ public void OnClientPostAdminCheck(int client)
 
     if (isSteamAuthed && auth[0] != '\0')
     {
-        PrintToServer("[SteamAuth][OnClientPostAdminCheck] \"%s\" - SteamAuth is VALID. (Steam2: %s | Steam64: %s)", name, auth, steam64);
+        PrintToServer("[SteamAuth][OnClientPostAdminCheck] \"%s\" - SteamAuth is VALID. (Steam: %s | Steam64: %s)", name, auth, steam64);
         PrintToChat(client, "\x04[SteamAuth]\x01 OnClientPostAdminCheck: Steam authentication is \x04valid\x01. (%s)", auth);
     }
     else
