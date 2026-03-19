@@ -8,7 +8,7 @@ public Plugin myinfo =
     name        = "Steam Auth Debug",
     author      = "jvnipers",
     description = "Prints whether SteamAuth is valid on all client join stages",
-    version     = "1.0.3",
+    version     = "1.0.4",
     url         = "https://github.com/FemboyKZ/steamauth-debug"
 };
 
@@ -51,12 +51,16 @@ public void OnClientAuthorized(int client, const char[] auth)
     if (auth[0] != '\0' && !StrEqual(auth, "STEAM_ID_PENDING", false))
     {
         PrintToServer("[SteamAuth][OnClientAuthorized] \"%s\" - SteamAuth is VALID. (SteamID: %s)", name, auth);
-        PrintToChat(client, "\x04[SteamAuth]\x01 OnClientAuthorized: Steam authentication is \x04valid\x01. (%s)", auth);
+        if (IsClientInGame(client)) {
+            PrintToChat(client, "\x04[SteamAuth]\x01 OnClientAuthorized: Steam authentication is \x04valid\x01. (%s)", auth);
+        }
     }
     else
     {
         PrintToServer("[SteamAuth][OnClientAuthorized] \"%s\" - SteamAuth is INVALID.", name);
-        PrintToChat(client, "\x04[SteamAuth]\x01 OnClientAuthorized: Steam authentication is \x02invalid\x01.");
+        if (IsClientInGame(client)) {
+            PrintToChat(client, "\x04[SteamAuth]\x01 OnClientAuthorized: Steam authentication is \x02invalid\x01.");
+        }
     }
 }
 
@@ -77,12 +81,16 @@ public void OnClientPutInServer(int client)
     if (isSteamAuthed && auth[0] != '\0')
     {
         PrintToServer("[SteamAuth][OnClientPutInServer] \"%s\" - SteamAuth is VALID. (Steam: %s | Steam64: %s)", name, auth, steam64);
-        PrintToChat(client, "\x04[SteamAuth]\x01 OnClientPutInServer: Steam authentication is \x04valid\x01. (%s)", auth);
+        if (IsClientInGame(client)) {
+            PrintToChat(client, "\x04[SteamAuth]\x01 OnClientPutInServer: Steam authentication is \x04valid\x01. (%s)", auth);
+        }
     }
     else
     {
         PrintToServer("[SteamAuth][OnClientPutInServer] \"%s\" - SteamAuth is INVALID.", name);
-        PrintToChat(client, "\x04[SteamAuth]\x01 OnClientPutInServer: Steam authentication is \x02invalid\x01.");
+        if (IsClientInGame(client)) {
+            PrintToChat(client, "\x04[SteamAuth]\x01 OnClientPutInServer: Steam authentication is \x02invalid\x01.");
+        }
     }
 }
 
@@ -103,11 +111,15 @@ public void OnClientPostAdminCheck(int client)
     if (isSteamAuthed && auth[0] != '\0')
     {
         PrintToServer("[SteamAuth][OnClientPostAdminCheck] \"%s\" - SteamAuth is VALID. (Steam: %s | Steam64: %s)", name, auth, steam64);
-        PrintToChat(client, "\x04[SteamAuth]\x01 OnClientPostAdminCheck: Steam authentication is \x04valid\x01. (%s)", auth);
+        if (IsClientInGame(client)) {
+            PrintToChat(client, "\x04[SteamAuth]\x01 OnClientPostAdminCheck: Steam authentication is \x04valid\x01. (%s)", auth);
+        }
     }
     else
     {
         PrintToServer("[SteamAuth][OnClientPostAdminCheck] \"%s\" - SteamAuth is INVALID.", name);
-        PrintToChat(client, "\x04[SteamAuth]\x01 OnClientPostAdminCheck: Steam authentication is \x02invalid\x01.");
+        if (IsClientInGame(client)) {
+            PrintToChat(client, "\x04[SteamAuth]\x01 OnClientPostAdminCheck: Steam authentication is \x02invalid\x01.");
+        }
     }
 }
